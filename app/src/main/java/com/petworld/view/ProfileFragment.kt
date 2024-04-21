@@ -13,6 +13,13 @@ import androidx.navigation.Navigation
 import com.petworld.databinding.FragmentProfileBinding
 import com.petworld.databinding.FragmentSignInBinding
 import com.petworld.viewmodel.SignInViewModel
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import java.io.IOException
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: SignInViewModel
@@ -52,5 +59,45 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionItemProfileToSignInFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        binding.btnSave.setOnClickListener {
+            var firstName = binding.txtFirst.text.toString()
+            var lastName = binding.txtLast.text.toString()
+            var password = binding.txtPassword.text.toString()
+            update(username.toString(), firstName, lastName, password)
+        }
+    }
+
+    fun update(username: String, firstName: String, lastName: String, password: String) {
+        val url = "http://10.0.2.2/uts_anmp/update.php"
+
+        val requestBody = FormBody.Builder()
+            .add("username", username)
+            .add("firstName", firstName)
+            .add("lastName", lastName)
+            .add("password", password)
+            .build()
+
+        val request = Request.Builder()
+            .url(url)
+            .post(requestBody)
+            .build()
+
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+                // Penanganan jika gagal melakukan registrasi
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val responseData = response.body()?.string()
+                    // Proses tanggapan dari server setelah registrasi berhasil
+                } else {
+                    // Penanganan jika gagal melakukan registrasi
+                }
+            }
+        })
     }
 }

@@ -21,7 +21,7 @@ class SignInViewModel  (application: Application) : AndroidViewModel(application
 
     fun fetch() {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "http://10.0.2.2/uts_anmp/users.json"
+        val url = "http://10.0.2.2/uts_anmp/users.php"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
