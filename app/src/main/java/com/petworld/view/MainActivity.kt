@@ -14,7 +14,6 @@ import com.petworld.R
 import com.petworld.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    val USER = "user"
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         var sharedFile = "com.PetWorld"
         var shared: SharedPreferences = getSharedPreferences(sharedFile,
             Context.MODE_PRIVATE )
-        var user = shared.getString(USER,"")
+        var user = shared.getString("user","")
         if (user==""){
             val action = HomeFragmentDirections.actionItemHomeToSignInFragment()
             navController.navigate(action)

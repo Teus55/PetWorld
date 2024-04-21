@@ -49,6 +49,9 @@
             android:id="@+id/actionHomeFragment"
             app:destination="@id/itemHome"
             app:popUpTo="@id/itemHome" />
+        <action
+            android:id="@+id/action_itemProfile_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"

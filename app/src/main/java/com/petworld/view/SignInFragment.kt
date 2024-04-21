@@ -1,5 +1,7 @@
 package com.petworld.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,6 @@ import com.squareup.picasso.Picasso
 class SignInFragment : Fragment() {
     private lateinit var viewModel: SignInViewModel
     private lateinit var binding: FragmentSignInBinding
-    val USER = "user"
     var cekLogin = 0
 
     override fun onCreateView(
@@ -46,6 +47,12 @@ class SignInFragment : Fragment() {
                 }
             })
             if (cekLogin == 1) {
+                var sharedFile = "com.PetWorld"
+                var shared: SharedPreferences = requireActivity().getSharedPreferences(sharedFile,
+                    Context.MODE_PRIVATE )
+                var editor: SharedPreferences.Editor = shared.edit()
+                editor.putString("user", binding.txtUsername.text.toString())
+                editor.apply()
                 val action = SignInFragmentDirections.actionSignInFragmentToItemHome2()
                 Navigation.findNavController(it).navigate(action)
             }
