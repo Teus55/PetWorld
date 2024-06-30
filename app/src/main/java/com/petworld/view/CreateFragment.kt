@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.petworld.R
 import com.petworld.databinding.FragmentCreateBinding
+import com.petworld.model.PetWorld
 import com.petworld.viewmodel.ListViewModel
 
 class CreateFragment : Fragment() {
@@ -29,16 +30,16 @@ class CreateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
-        binding.btnAdd.setOnClickListener {
-            var todo = Todo(
-                binding.txtTitle.text.toString(),
-                binding.txtNotes.text.toString()
-            )
-            val list = listOf(todo)
-            viewModel.addTodo(list)
-            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
-            Navigation.findNavController(it).popBackStack()
+//        binding.btnAdd.setOnClickListener {
+//            var petWorld = PetWorld(
+////                binding.txtTitle.text.toString(),
+////                binding.txtNotes.text.toString()
+//            )
+//            val list = listOf(todo)
+//            viewModel.addTodo(list)
+//            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
+//            Navigation.findNavController(it).popBackStack()
+//            }
         }
-    }
-
 }
+

@@ -29,16 +29,16 @@ class CreateDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-        binding.btnAdd.setOnClickListener {
-            var todo = Todo(
-                binding.txtTitle.text.toString(),
-                binding.txtNotes.text.toString()
-            )
-            val list = listOf(todo)
-            viewModel.addTodo(list)
-            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
-            Navigation.findNavController(it).popBackStack()
-        }
+//        binding.btnAdd.setOnClickListener {
+//            var todo = Todo(
+//                binding.txtTitle.text.toString(),
+//                binding.txtNotes.text.toString()
+//            )
+//            val list = listOf(todo)
+//            viewModel.addTodo(list)
+//            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
+//            Navigation.findNavController(it).popBackStack()
+//        }
 
     }
 

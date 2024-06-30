@@ -74,4 +74,14 @@
             android:id="@+id/actionSignInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.petworld.view.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/createDetailFragment"
+        android:name="com.petworld.view.CreateDetailFragment"
+        android:label="fragment_create_detail"
+        tools:layout="@layout/fragment_create_detail" />
 </navigation>

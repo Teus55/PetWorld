@@ -28,9 +28,9 @@ interface PetWorldDao {
 
     //user
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(vararg user:User)
+    fun registerUser(vararg user:User)
     @Query("SELECT * FROM user WHERE username = :username AND password = :password")
-    fun loginUser(username:String, password:String)
+    fun loginUser(username:String, password:String): User?
     @Delete
     fun deleteUser(user: User)
 }
