@@ -54,6 +54,7 @@ class ProfileFragment : Fragment() {
         binding.btnLogOut.setOnClickListener{
             val editor = requireActivity().getSharedPreferences("com.PetWorld", Context.MODE_PRIVATE).edit()
             editor.remove("user_id")
+            editor.remove("user")
             editor.apply()
             val action = ProfileFragmentDirections.actionItemProfileToSignInFragment()
             Navigation.findNavController(it).navigate(action)

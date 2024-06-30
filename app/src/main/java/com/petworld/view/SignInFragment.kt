@@ -59,6 +59,7 @@ class SignInFragment : Fragment() {
                 val sharedPreferences = requireActivity().getSharedPreferences("com.PetWorld", Context.MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
                 editor.putInt("user_id", user.id)
+                editor.putString("user", user.username)
                 editor.apply()
                 findNavController().navigate(R.id.action_signInFragment_to_itemHome2)
                 Toast.makeText(context, "Login successful.", Toast.LENGTH_SHORT).show()
