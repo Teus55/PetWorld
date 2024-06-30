@@ -37,7 +37,7 @@ class ListViewModel(application: Application)
             val id = db.petWorldDao().insertPetWorld(*list.toTypedArray())
 
             if (id.isNotEmpty()) {
-                idPetLD.postValue(id[0].toInt())  // Konversi dari Long ke Int
+                idPetLD.postValue(id[0].toInt())
             }
             petWorldLD.postValue(db.petWorldDao().selectAllPetWorld())
         }
