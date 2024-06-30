@@ -10,7 +10,7 @@ import androidx.room.Query
 interface PetWorldDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPetWorld(vararg petWorld:PetWorld)
+    fun insertPetWorld(vararg petWorld:PetWorld) : List<Long>
     @Query("SELECT * FROM petWorld")
     fun selectAllPetWorld(): List<PetWorld>
     @Query("SELECT * FROM petWorld WHERE id= :id")
@@ -34,8 +34,8 @@ interface PetWorldDao {
     fun selectUser(id:Int) : User
     @Query("SELECT * FROM user WHERE username = :username AND password = :password")
     fun loginUser(username:String, password:String): User?
-    @Query("UPDATE user SET first=:first, last=:last, username=:username, password=:password WHERE id = :id")
-    fun update(first: String, last: String, username: String, password: String, id: Int)
+    @Query("UPDATE user SET first=:first, last=:last, password=:password WHERE id = :id")
+    fun update(first: String, last: String, password: String, id: Int)
     @Delete
     fun deleteUser(user: User)
 }

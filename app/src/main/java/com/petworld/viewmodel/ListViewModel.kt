@@ -67,49 +67,4 @@ class ListViewModel(application: Application)
             petWorldLD.postValue(db.petWorldDao().selectAllPetWorld())
         }
     }
-
-
-
 }
-
-//class ListViewModel(application: Application) : AndroidViewModel(application) {
-//    val petLD = MutableLiveData<ArrayList<PetWorld>>()
-//    val petLoadErrorLD = MutableLiveData<Boolean>()
-//    val loadingLD = MutableLiveData<Boolean>()
-//
-//    val TAG = "volleyTag"
-//    private var queue: RequestQueue? = null
-//
-//    fun refresh() {
-//        loadingLD.value = true
-//        petLoadErrorLD.value = false
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = "http://10.0.2.2/uts_anmp/berita.json"
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<List<PetWorld>>() { }.type
-//                val result = Gson().fromJson<List<PetWorld>>(it, sType)
-//                petLD.value = result as ArrayList<PetWorld>?
-//                loadingLD.value = false
-//
-//                Log.d("showvoley", result.toString())
-//
-//            },
-//            {
-//                Log.d("showvoley", it.toString())
-//                petLoadErrorLD.value = false
-//                loadingLD.value = false
-//            })
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
-//
-//        petLoadErrorLD.value = false
-//        loadingLD.value = true
-//    }
-//
-//    override fun onCleared() {
-//        super.onCleared()
-//        queue?.cancelAll(TAG)
-//    }
-//}

@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.petworld.model.PetWorldDatabase
 import com.petworld.model.User
+import com.petworld.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,6 +26,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
     val userLD = MutableLiveData<User?>()
     private var job = Job()
 
+    fun fetch(id:Int) {
+        launch {
+            val db = buildDb(getApplication())
+            userLD.postValue(db.petWorldDao().selectUser(id))
+        }
+    }
 
     fun register(list: List<User>) {
         launch {
@@ -51,29 +58,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
         }
     }
 
+    fun update(first: String, last: String, password: String, id: Int) {
+        launch {
+            val db = buildDb(getApplication())
+            db.petWorldDao().update(first, last, password, id)
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 }
-
-
-//    val TAG = "volleyTag"
-//    private var queue: RequestQueue? = null
-
-//    fun fetch() {
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = "http://10.0.2.2/uts_anmp/users.php"
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<List<User>>() { }.type
-//                val result = Gson().fromJson<List<User>>(it, sType)
-//                userLD.value = result as ArrayList<User>?
-//                Log.d("showvoley", result.toString())
-//            },
-//            {
-//                Log.d("showvoley", it.toString())
-//            })
-//
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
-//    }
