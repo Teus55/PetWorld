@@ -86,12 +86,11 @@
     <fragment
         android:id="@+id/createDetailFragment"
         android:name="com.petworld.view.CreateDetailFragment"
-        android:label="fragment_create_detail"
-        tools:layout="@layout/fragment_create_detail" >
+        android:label="Detail"
+        tools:layout="@layout/fragment_create_detail">
         <action
             android:id="@+id/action_createDetailFragment_to_itemHome"
             app:destination="@id/itemHome" />
-        <argument
-            android:name="id" />
+        <argument android:name="id" />
     </fragment>
 </navigation>
