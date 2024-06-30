@@ -83,7 +83,7 @@
         android:label="Create"
         tools:layout="@layout/fragment_create">
         <action
-            android:id="@+id/action_createFragment_to_createDetailFragment"
+            android:id="@+id/actionCreateDetail"
             app:destination="@id/createDetailFragment" />
     </fragment>
     <fragment
@@ -94,5 +94,7 @@
         <action
             android:id="@+id/action_createDetailFragment_to_itemHome"
             app:destination="@id/itemHome" />
+        <argument
+            android:name="id" />
     </fragment>
 </navigation>

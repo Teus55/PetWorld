@@ -8,8 +8,9 @@ import androidx.room.Query
 
 @Dao
 interface PetWorldDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPetWorld(vararg petWorld:PetWorld)
+    fun insertPetWorld(vararg petWorld:PetWorld) : List<Long>
     @Query("SELECT * FROM petWorld")
     fun selectAllPetWorld(): List<PetWorld>
     @Query("SELECT * FROM petWorld WHERE id= :id")

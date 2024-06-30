@@ -39,6 +39,7 @@ class ListViewModel(application: Application)
         }
     }
 
+
     fun refresh() {
         loadingLD.value = true
         petWorldLoadErrorLD.value = false
