@@ -37,9 +37,6 @@
             android:name="img_url"
             app:argType="string" />
         <argument
-            android:name="judul"
-            app:argType="string" />
-        <argument
             android:name="user"
             app:argType="string" />
     </fragment>

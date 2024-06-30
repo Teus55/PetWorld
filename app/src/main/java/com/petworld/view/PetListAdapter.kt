@@ -24,6 +24,7 @@ class PetListAdapter(val petList:ArrayList<PetWorld>):RecyclerView.Adapter<PetLi
         holder.binding.txtTitle.text = petList[position].title
         holder.binding.txtUser.text = "@"+petList[position].user
         holder.binding.txtShortPara.text = petList[position].shortPara
+        holder.binding.txtCategoryHewan.text = petList[position].catergory
         var url = petList[position].url
         val builder = Picasso.Builder(holder.itemView.context)
         builder.listener { picasso, uri, exception ->
@@ -32,9 +33,8 @@ class PetListAdapter(val petList:ArrayList<PetWorld>):RecyclerView.Adapter<PetLi
         holder.binding.btnRead.setOnClickListener{
             val idBerita = petList[position].id.toString()
             val imgURL = petList[position].url.toString()
-            val judul = petList[position].title.toString()
             val user = "@"+petList[position].user.toString()
-            val action = HomeFragmentDirections.actionDetailFragment(idBerita, imgURL, judul, user)
+            val action = HomeFragmentDirections.actionDetailFragment(idBerita, imgURL, user)
             Navigation.findNavController(it).navigate(action)
 
         }
