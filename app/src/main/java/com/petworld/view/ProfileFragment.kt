@@ -62,17 +62,6 @@ class ProfileFragment : Fragment(), UserSaveChangesClick {
             Navigation.findNavController(it).navigate(action)
         }
 
-//        binding.btnSave.setOnClickListener {
-//            var firstName = binding.txtFirst.text.toString()
-//            var lastName = binding.txtLast.text.toString()
-//            var password = binding.txtPassword.text.toString()
-//            if (password.isNotEmpty()) {
-//                viewModel.update(firstName, lastName, password, user_id)
-//                Toast.makeText(view.context, "User has updated", Toast.LENGTH_SHORT).show()
-//            } else {
-//                Toast.makeText(context, "Password tidak boleh kosong!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
 
     fun observeViewModel() {
