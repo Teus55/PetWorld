@@ -12,7 +12,6 @@ import com.petworld.databinding.FragmentDetailBinding
 import com.petworld.viewmodel.DetailViewModel
 import com.squareup.picasso.Picasso
 
-
 class DetailFragment : Fragment() {
     private lateinit var viewModel: DetailViewModel
     private lateinit var binding: FragmentDetailBinding
@@ -21,7 +20,6 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -31,9 +29,6 @@ class DetailFragment : Fragment() {
         val id = DetailFragmentArgs.fromBundle(requireArguments()).idBerita.toInt()
         val user = DetailFragmentArgs.fromBundle(requireArguments()).user
         val imgURL = DetailFragmentArgs.fromBundle(requireArguments()).imgUrl
-//        binding.txtUser.text = user
-//        Picasso.get().load(imgURL).into(binding.imgBerita)
-
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.fetch(id)
         observeViewModel(user, imgURL)
