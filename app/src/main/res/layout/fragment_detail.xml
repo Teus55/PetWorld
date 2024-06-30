@@ -5,7 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="detail"
+            type="com.petworld.model.DetailPetWorld" />
+        <variable
+            name="user"
+            type="String" />
+        <variable
+            name="imgURL"
+            type="String" />
     </data>
 
     <FrameLayout
@@ -21,6 +29,7 @@
                 android:id="@+id/imgBerita"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:imageUrl="@{imgURL}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="User"
+                android:text="@{user}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
@@ -42,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Title"
+                android:text="@{detail.subtitle}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgBerita" />
@@ -55,7 +64,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:maxLines="10"
-                android:text="Paragraf"
+                android:text="@{detail.para}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtUser" />

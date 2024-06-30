@@ -16,8 +16,6 @@ import com.squareup.picasso.Picasso
 class DetailFragment : Fragment() {
     private lateinit var viewModel: DetailViewModel
     private lateinit var binding: FragmentDetailBinding
-//    var maxPage = 0
-//    var page = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,18 +31,19 @@ class DetailFragment : Fragment() {
         val id = DetailFragmentArgs.fromBundle(requireArguments()).idBerita.toInt()
         val user = DetailFragmentArgs.fromBundle(requireArguments()).user
         val imgURL = DetailFragmentArgs.fromBundle(requireArguments()).imgUrl
-        binding.txtUser.text = user
-        Picasso.get().load(imgURL).into(binding.imgBerita)
+//        binding.txtUser.text = user
+//        Picasso.get().load(imgURL).into(binding.imgBerita)
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.fetch(id)
-        observeViewModel()
+        observeViewModel(user, imgURL)
     }
 
-    fun observeViewModel() {
+    fun observeViewModel(user: String, imgURL : String) {
         viewModel.detailPetWorldLD.observe(viewLifecycleOwner, Observer {
-            binding.txtPara.setText(it.para)
-            binding.txtTitle.setText(it.subtitle)
+            binding.detail = it
+            binding.user = user
+            binding.imgURL = imgURL
         })
     }
 }
