@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken
 import com.petworld.model.User
 
 
-class SignInViewModel  (application: Application) : AndroidViewModel(application){
+class UserViewModel  (application: Application) : AndroidViewModel(application){
     val userLD = MutableLiveData<ArrayList<User>>()
 
     val TAG = "volleyTag"

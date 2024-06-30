@@ -11,8 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.petworld.databinding.FragmentProfileBinding
-import com.petworld.databinding.FragmentSignInBinding
-import com.petworld.viewmodel.SignInViewModel
+import com.petworld.viewmodel.UserViewModel
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody
@@ -22,7 +21,7 @@ import okhttp3.Response
 import java.io.IOException
 
 class ProfileFragment : Fragment() {
-    private lateinit var viewModel: SignInViewModel
+    private lateinit var viewModel: UserViewModel
     private lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +40,7 @@ class ProfileFragment : Fragment() {
             Context.MODE_PRIVATE )
         var username = shared.getString("user","")
         binding.txtProfile.text = username
-        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.fetch()
         viewModel.userLD.observe(viewLifecycleOwner, Observer { user ->
             user.forEach {

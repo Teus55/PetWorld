@@ -10,15 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.petworld.R
-import com.petworld.databinding.FragmentDetailBinding
 import com.petworld.databinding.FragmentSignInBinding
-import com.petworld.viewmodel.DetailViewModel
-import com.petworld.viewmodel.SignInViewModel
-import com.squareup.picasso.Picasso
+import com.petworld.viewmodel.UserViewModel
 
 class SignInFragment : Fragment() {
-    private lateinit var viewModel: SignInViewModel
+    private lateinit var viewModel: UserViewModel
     private lateinit var binding: FragmentSignInBinding
     var cekLogin = 0
 
@@ -34,7 +30,7 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.fetch()
         binding.btnSignIn.setOnClickListener {
             viewModel.userLD.observe(viewLifecycleOwner, Observer { user ->

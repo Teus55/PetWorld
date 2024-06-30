@@ -1,31 +1,46 @@
 package com.petworld.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class PetWorld(
-    var id: String?,
+    @ColumnInfo(name = "title")
     var title: String?,
+    @ColumnInfo(name = "user")
     var user: String?,
-    @SerializedName("short_para")
+    @ColumnInfo(name = "shortPara")
     var shortPara: String?,
+    @ColumnInfo(name = "url")
     var url: String?
-)
-
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}
+@Entity
 data class DetailPetWorld(
-    @SerializedName("id_berita")
+    @ColumnInfo(name = "idPetworld")
     var idPetworld: String?,
-    var id: String?,
+    @ColumnInfo(name = "idDetail")
+    var idDetail: String?,
+    @ColumnInfo(name = "subTitle")
     var subtitle: String?,
-    @SerializedName("paragraf")
+    @ColumnInfo(name = "para")
     var para: String?
 )
-
+@Entity
 data class User(
-    var id: String?,
-    @SerializedName("first_name")
+    @ColumnInfo(name = "first")
     var first: String?,
-    @SerializedName("last_name")
+    @ColumnInfo(name = "last")
     var last: String?,
+    @ColumnInfo(name = "username")
     var username: String?,
+    @ColumnInfo(name = "password")
     var password: String?
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}
