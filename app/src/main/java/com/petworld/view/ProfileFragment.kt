@@ -24,7 +24,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
-class ProfileFragment : Fragment(),UserSaveChangesClick {
+class ProfileFragment : Fragment(), UserSaveChangesClick {
     private lateinit var viewModel: UserViewModel
     private lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
@@ -39,6 +39,7 @@ class ProfileFragment : Fragment(),UserSaveChangesClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.saveClickListener = this
         var sharedFile = "com.PetWorld"
         var shared: SharedPreferences = requireActivity().getSharedPreferences(
             sharedFile,
@@ -49,67 +50,44 @@ class ProfileFragment : Fragment(),UserSaveChangesClick {
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.fetch(user_id)
         observeViewModel()
-        // binding.saveClickListener = this
-        binding.btnSave.setOnClickListener {
-            var firstName = binding.txtFirst.text.toString()
-            var lastName = binding.txtLast.text.toString()
-            var password = binding.txtPassword.text.toString()
-            if (password.isNotEmpty()) {
-                viewModel.update(firstName, lastName, password, user_id)
-                Toast.makeText(view.context, "User has updated", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Password tidak boleh kosong!", Toast.LENGTH_SHORT).show()
-            }
-            binding.btnLogOut.setOnClickListener{
-                val editor = requireActivity().getSharedPreferences("com.PetWorld", Context.MODE_PRIVATE).edit()
-                editor.remove("user_id")
-                editor.remove("user")
-                editor.apply()
-                val action = ProfileFragmentDirections.actionItemProfileToSignInFragment()
-                Navigation.findNavController(it).navigate(action)
-            }
 
-            /*    super.onViewCreated(view, savedInstanceState)
-        var sharedFile = "com.PetWorld"
-        var shared: SharedPreferences = requireActivity().getSharedPreferences(sharedFile,
-            Context.MODE_PRIVATE )
-        var user_id = shared.getInt("user_id",0)
-        var username = shared.getString("user","")
-        binding.txtProfile.text = username
-
-        viewModel.fetch(user_id)
-        observeViewModel()
-
-
-
-        binding.btnSave.setOnClickListener {
-            var firstName = binding.txtFirst.text.toString()
-            var lastName = binding.txtLast.text.toString()
-            var password = binding.txtPassword.text.toString()
-            if (password.isNotEmpty())
-            {
-                viewModel.update(firstName, lastName, password, user_id)
-                Toast.makeText(view.context, "User has updated", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Password tidak boleh kosong!", Toast.LENGTH_SHORT).show()
-            }
-        }*/
+        binding.btnLogOut.setOnClickListener {
+            val editor =
+                requireActivity().getSharedPreferences("com.PetWorld", Context.MODE_PRIVATE)
+                    .edit()
+            editor.remove("user_id")
+            editor.remove("user")
+            editor.apply()
+            val action = ProfileFragmentDirections.actionItemProfileToSignInFragment()
+            Navigation.findNavController(it).navigate(action)
         }
+
+//        binding.btnSave.setOnClickListener {
+//            var firstName = binding.txtFirst.text.toString()
+//            var lastName = binding.txtLast.text.toString()
+//            var password = binding.txtPassword.text.toString()
+//            if (password.isNotEmpty()) {
+//                viewModel.update(firstName, lastName, password, user_id)
+//                Toast.makeText(view.context, "User has updated", Toast.LENGTH_SHORT).show()
+//            } else {
+//                Toast.makeText(context, "Password tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+//            }
+//        }
     }
+
     fun observeViewModel() {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             binding.user = it
-//            if (it != null) {
-//                binding.txtFirst.setText(it.first)
-//                binding.txtLast.setText(it.last)
-//                binding.txtPassword.setText(it.password)
-//            }
         })
     }
 
     override fun onSaveChangesClick(v: View, obj: User) {
-        viewModel.update(obj.first.toString(), obj.last.toString(), obj.password.toString(), obj.id)
+        viewModel.update(
+            binding.txtFirst.text.toString(),
+            binding.txtLast.text.toString(),
+            binding.txtPassword.text.toString(),
+            obj.id)
         Toast.makeText(context, "Berhasil Save", Toast.LENGTH_SHORT).show()
-        Log.d("cekvar", obj.toString())
     }
+
 }

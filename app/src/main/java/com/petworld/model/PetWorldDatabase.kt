@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.petworld.util.DB_NAME
 import com.petworld.util.MIGRATION_1_2
+import com.petworld.util.MIGRATION_2_3
 
-@Database(entities =[PetWorld::class, DetailPetWorld::class, User::class], version =  2)
+@Database(entities =[PetWorld::class, DetailPetWorld::class, User::class], version =  3)
 abstract class PetWorldDatabase:RoomDatabase() {
     abstract fun petWorldDao(): PetWorldDao
 
@@ -25,7 +26,7 @@ abstract class PetWorldDatabase:RoomDatabase() {
         fun buildDatabase(context:Context) = Room.databaseBuilder(
             context.applicationContext,
             PetWorldDatabase::class.java, DB_NAME)
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
             .build()
 
         operator fun invoke(context:Context) {

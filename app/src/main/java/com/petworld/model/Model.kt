@@ -37,13 +37,13 @@ data class DetailPetWorld(
 @Entity
 data class User(
     @ColumnInfo(name = "first")
-    var first: String?,
+    var first: String,
     @ColumnInfo(name = "last")
-    var last: String?,
+    var last: String,
     @ColumnInfo(name = "username")
-    var username: String?,
+    var username: String,
     @ColumnInfo(name = "password")
-    var password: String?
+    var password: String
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
