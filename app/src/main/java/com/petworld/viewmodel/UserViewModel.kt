@@ -56,6 +56,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
     fun update(first: String, last: String, password: String, id: Int) {
         launch {
             db.petWorldDao().update(first, last, password, id)
+            //Log.d("cekvar", idPetLD.toString())
         }
     }
 
