@@ -38,7 +38,7 @@ class ProfileFragment : Fragment() {
         var sharedFile = "com.PetWorld"
         var shared: SharedPreferences = requireActivity().getSharedPreferences(sharedFile,
             Context.MODE_PRIVATE )
-//        var username = shared.getString("user","")
+        var user_id = shared.getInt("user_id",0)
 //        binding.txtProfile.text = username
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 //        viewModel.fetch()
