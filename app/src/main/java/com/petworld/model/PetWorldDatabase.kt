@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.petworld.util.DB_NAME
+import com.petworld.util.MIGRATION_1_2
 
-@Database(entities =[PetWorld::class, DetailPetWorld::class, User::class], version =  1)
+@Database(entities =[PetWorld::class, DetailPetWorld::class, User::class], version =  2)
 abstract class PetWorldDatabase:RoomDatabase() {
     abstract fun petWorldDao(): PetWorldDao
 
@@ -15,11 +16,17 @@ abstract class PetWorldDatabase:RoomDatabase() {
         private var instance: PetWorldDatabase ?= null
         private val LOCK = Any()
 
-        fun buildDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                PetWorldDatabase::class.java,
-                DB_NAME).build()
+//        fun buildDatabase(context: Context) =
+//            Room.databaseBuilder(
+//                context.applicationContext,
+//                PetWorldDatabase::class.java,
+//                DB_NAME).build()
+
+        fun buildDatabase(context:Context) = Room.databaseBuilder(
+            context.applicationContext,
+            PetWorldDatabase::class.java, DB_NAME)
+            .addMigrations(MIGRATION_1_2)
+            .build()
 
         operator fun invoke(context:Context) {
             if(instance!=null) {

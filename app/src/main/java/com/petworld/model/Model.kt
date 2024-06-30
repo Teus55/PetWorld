@@ -14,7 +14,9 @@ data class PetWorld(
     @ColumnInfo(name = "shortPara")
     var shortPara: String?,
     @ColumnInfo(name = "url")
-    var url: String?
+    var url: String?,
+    @ColumnInfo(name = "category")
+    var catergory: String?,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

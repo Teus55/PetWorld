@@ -44,7 +44,7 @@ class CreateFragment : Fragment() {
         binding.btnNext.setOnClickListener(){
 
             var petWorld = PetWorld(binding.txtJudul.text.toString(), username,
-                binding.txtShortParaf.text.toString(), binding.txtUrl.text.toString())
+                binding.txtShortParaf.text.toString(), binding.txtUrl.text.toString(), binding.txtCategory.text.toString())
 
             val list = listOf(petWorld)
             viewModel.addPetWorld(list)
