@@ -17,14 +17,14 @@ import com.petworld.viewmodel.ListViewModel
 
 class CreateDetailFragment : Fragment() {
     private lateinit var binding: FragmentCreateDetailBinding
-    private lateinit var viewModel:DetailViewModel
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCreateDetailBinding.inflate(inflater,container,false)
+        binding = FragmentCreateDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,25 +32,18 @@ class CreateDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         val id = CreateDetailFragmentArgs.fromBundle(requireArguments()).id
-        binding.btnDone.setOnClickListener(){
-            var detailPetWorld = DetailPetWorld(id,binding.txtSubtitle.text.toString(), binding.txtParagraf.text.toString())
+        binding.btnDone.setOnClickListener() {
+            var detailPetWorld = DetailPetWorld(
+                id,
+                binding.txtSubtitle.text.toString(),
+                binding.txtParagraf.text.toString()
+            )
             val list = listOf(detailPetWorld)
             viewModel.addDetailPetWorld(list)
 
             val action = CreateDetailFragmentDirections.actionCreateDetailFragmentToItemHome()
             Navigation.findNavController(it).navigate(action)
         }
-
-//        binding.btnAdd.setOnClickListener {
-//            var todo = Todo(
-//                binding.txtTitle.text.toString(),
-//                binding.txtNotes.text.toString()
-//            )
-//            val list = listOf(todo)
-//            viewModel.addTodo(list)
-//            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
-//            Navigation.findNavController(it).popBackStack()
-//        }
 
     }
 

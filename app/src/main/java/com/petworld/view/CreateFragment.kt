@@ -19,14 +19,14 @@ import com.petworld.viewmodel.ListViewModel
 
 class CreateFragment : Fragment() {
     private lateinit var binding: FragmentCreateBinding
-    private lateinit var viewModel:ListViewModel
+    private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCreateBinding.inflate(inflater,container,false)
+        binding = FragmentCreateBinding.inflate(inflater, container, false)
         return binding.root
 
 
@@ -37,38 +37,32 @@ class CreateFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
         var sharedFile = "com.PetWorld"
-        var shared: SharedPreferences = requireActivity().getSharedPreferences(sharedFile,
-            Context.MODE_PRIVATE )
-        var user_id = shared.getInt("user_id",0)
-        var username = shared.getString("user","")
-        binding.btnNext.setOnClickListener(){
+        var shared: SharedPreferences = requireActivity().getSharedPreferences(
+            sharedFile,
+            Context.MODE_PRIVATE
+        )
+        var user_id = shared.getInt("user_id", 0)
+        var username = shared.getString("user", "")
+        binding.btnNext.setOnClickListener() {
 
-            var petWorld = PetWorld(binding.txtJudul.text.toString(), username,
-                binding.txtShortParaf.text.toString(), binding.txtUrl.text.toString(), binding.txtCategory.text.toString())
+            var petWorld = PetWorld(
+                binding.txtJudul.text.toString(),
+                username,
+                binding.txtShortParaf.text.toString(),
+                binding.txtUrl.text.toString(),
+                binding.txtCategory.text.toString()
+            )
 
             val list = listOf(petWorld)
             viewModel.addPetWorld(list)
-//            val id = viewModel.idPetLD
             viewModel.idPetLD.observe(viewLifecycleOwner, Observer { id ->
-//                Log.d("cekvar", id.toString())
                 val action = CreateFragmentDirections.actionCreateDetail(id.toString())
                 Navigation.findNavController(it).navigate(action)
             })
-//            val action = CreateFragmentDirections.actionCreateDetail(id.toString())
 
 
         }
 
-//        binding.btnAdd.setOnClickListener {
-//            var petWorld = PetWorld(
-////                binding.txtTitle.text.toString(),
-////                binding.txtNotes.text.toString()
-//            )
-//            val list = listOf(petWorld)
-//            val idPet = viewModel.addPetWorld(list)
-//            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
-//            Navigation.findNavController(it).popBackStack()
-//            }
-        }
+    }
 }
 

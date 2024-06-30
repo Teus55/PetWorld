@@ -43,7 +43,6 @@ class SignUpFragment : Fragment() {
                 binding.txtUsername.text.toString(),
                 binding.txtPassword.text.toString()
             )
-//            register(username, firstName, lastName, password)
 
             val list = listOf(user)
             val idPet =  viewModel.register(list)
@@ -53,36 +52,4 @@ class SignUpFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
     }
-//    fun register(username: String, firstName: String, lastName: String, password: String) {
-//        val url = "http://10.0.2.2/uts_anmp/register.php"
-//
-//        val requestBody = FormBody.Builder()
-//            .add("username", username)
-//            .add("firstName", firstName)
-//            .add("lastName", lastName)
-//            .add("password", password)
-//            .build()
-//
-//        val request = Request.Builder()
-//            .url(url)
-//            .post(requestBody)
-//            .build()
-//
-//        val client = OkHttpClient()
-//        client.newCall(request).enqueue(object : Callback {
-//            override fun onFailure(call: Call, e: IOException) {
-//                e.printStackTrace()
-//                // Penanganan jika gagal melakukan registrasi
-//            }
-//
-//            override fun onResponse(call: Call, response: Response) {
-//                if (response.isSuccessful) {
-//                    val responseData = response.body()?.string()
-//                    // Proses tanggapan dari server setelah registrasi berhasil
-//                } else {
-//                    // Penanganan jika gagal melakukan registrasi
-//                }
-//            }
-//        })
-//    }
 }
