@@ -46,7 +46,7 @@ class SignUpFragment : Fragment() {
 //            register(username, firstName, lastName, password)
 
             val list = listOf(user)
-            viewModel.register(list)
+            val idPet =  viewModel.register(list)
             Toast.makeText(view.context, "User added", Toast.LENGTH_LONG).show()
 
             val action = SignUpFragmentDirections.actionSignInFragment()

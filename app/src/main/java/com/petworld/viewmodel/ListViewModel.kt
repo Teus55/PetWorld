@@ -25,6 +25,7 @@ class ListViewModel(application: Application)
     val petWorldLD = MutableLiveData<List<PetWorld>>()
     val petWorldLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
+    val idPetLD = MutableLiveData<Int>()
     private var job = Job()
 
     override val coroutineContext: CoroutineContext
@@ -32,10 +33,13 @@ class ListViewModel(application: Application)
 
     fun addPetWorld(list: List<PetWorld>) {
         launch {
-            val db = PetWorldDatabase.buildDatabase(
-                getApplication()
-            )
-            db.petWorldDao().insertPetWorld(*list.toTypedArray())
+            val db = PetWorldDatabase.buildDatabase(getApplication())
+            val id = db.petWorldDao().insertPetWorld(*list.toTypedArray())
+
+            if (id.isNotEmpty()) {
+                idPetLD.postValue(id[0].toInt())  // Konversi dari Long ke Int
+            }
+            petWorldLD.postValue(db.petWorldDao().selectAllPetWorld())
         }
     }
 

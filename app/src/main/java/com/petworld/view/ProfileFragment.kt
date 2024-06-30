@@ -39,7 +39,8 @@ class ProfileFragment : Fragment() {
         var shared: SharedPreferences = requireActivity().getSharedPreferences(sharedFile,
             Context.MODE_PRIVATE )
         var user_id = shared.getInt("user_id",0)
-//        binding.txtProfile.text = username
+        var username = shared.getString("user","")
+        binding.txtProfile.text = username
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 //        viewModel.fetch()
 //        viewModel.userLD.observe(viewLifecycleOwner, Observer { user ->

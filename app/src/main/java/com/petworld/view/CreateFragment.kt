@@ -45,7 +45,8 @@ class CreateFragment : Fragment() {
                 binding.txtShortParaf.text.toString(), binding.txtUrl.text.toString())
 
             val list = listOf(petWorld)
-            val id = viewModel.addPetWorld(list)
+            viewModel.addPetWorld(list)
+            val id = viewModel.idPetLD
             val action = CreateFragmentDirections.actionCreateDetail(id.toString())
 
             Navigation.findNavController(it).navigate(action)
@@ -56,8 +57,8 @@ class CreateFragment : Fragment() {
 ////                binding.txtTitle.text.toString(),
 ////                binding.txtNotes.text.toString()
 //            )
-//            val list = listOf(todo)
-//            viewModel.addTodo(list)
+//            val list = listOf(petWorld)
+//            val idPet = viewModel.addPetWorld(list)
 //            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
 //            Navigation.findNavController(it).popBackStack()
 //            }
