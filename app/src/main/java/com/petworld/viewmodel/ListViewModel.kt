@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.petworld.model.PetWorld
 import com.petworld.model.PetWorldDatabase
+import com.petworld.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -30,12 +31,11 @@ class ListViewModel(application: Application)
 
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
+        val db = buildDb(getApplication())
 
     fun addPetWorld(list: List<PetWorld>) {
         launch {
-            val db = PetWorldDatabase.buildDatabase(getApplication())
             val id = db.petWorldDao().insertPetWorld(*list.toTypedArray())
-
             if (id.isNotEmpty()) {
                 idPetLD.postValue(id[0].toInt())
             }
@@ -48,10 +48,6 @@ class ListViewModel(application: Application)
         loadingLD.value = true
         petWorldLoadErrorLD.value = false
         launch {
-            val db = PetWorldDatabase.buildDatabase(
-                getApplication()
-            )
-
             petWorldLD.postValue(db.petWorldDao().selectAllPetWorld())
             loadingLD.postValue(false)
         }
@@ -59,11 +55,7 @@ class ListViewModel(application: Application)
 
     fun clearTask(petWorld: PetWorld) {
         launch {
-            val db = PetWorldDatabase.buildDatabase(
-                getApplication()
-            )
             db.petWorldDao().deletePetWorld(petWorld)
-
             petWorldLD.postValue(db.petWorldDao().selectAllPetWorld())
         }
     }

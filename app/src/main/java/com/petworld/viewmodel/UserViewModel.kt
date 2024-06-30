@@ -24,28 +24,23 @@ import kotlin.coroutines.CoroutineContext
 class UserViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 
     val userLD = MutableLiveData<User?>()
+    val db = buildDb(getApplication())
     private var job = Job()
 
     fun fetch(id:Int) {
         launch {
-            val db = buildDb(getApplication())
             userLD.postValue(db.petWorldDao().selectUser(id))
         }
     }
 
     fun register(list: List<User>) {
         launch {
-            val db = PetWorldDatabase.buildDatabase(
-                getApplication()
-            )
             db.petWorldDao().registerUser(*list.toTypedArray())
         }
     }
 
     fun login(username: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val db = PetWorldDatabase.buildDatabase(
-                getApplication() )
             val user = db.petWorldDao().loginUser(username, password)
             userLD.postValue(user)
             user?.let {
@@ -60,7 +55,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
 
     fun update(first: String, last: String, password: String, id: Int) {
         launch {
-            val db = buildDb(getApplication())
             db.petWorldDao().update(first, last, password, id)
         }
     }

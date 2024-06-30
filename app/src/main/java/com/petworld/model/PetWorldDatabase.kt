@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.petworld.util.DB_NAME
 
 @Database(entities =[PetWorld::class, DetailPetWorld::class, User::class], version =  1)
 abstract class PetWorldDatabase:RoomDatabase() {
@@ -18,7 +19,7 @@ abstract class PetWorldDatabase:RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 PetWorldDatabase::class.java,
-                "newpetworlddb").build()
+                DB_NAME).build()
 
         operator fun invoke(context:Context) {
             if(instance!=null) {
