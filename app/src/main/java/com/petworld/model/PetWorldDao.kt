@@ -21,7 +21,7 @@ interface PetWorldDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDetail(vararg detailPetWorld:DetailPetWorld)
     @Query("SELECT * FROM detailPetWorld WHERE idPetworld= :id")
-    fun selectDetail(id:Int)
+    fun selectDetail(id:Int) : DetailPetWorld
     @Delete
     fun deleteDetail(detailPetWorld: DetailPetWorld)
 

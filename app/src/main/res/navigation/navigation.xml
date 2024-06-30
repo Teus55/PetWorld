@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_itemHome_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_itemHome_to_itemCreate"
+            app:destination="@id/itemCreate" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -75,13 +78,21 @@
             app:destination="@id/signInFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createFragment"
+        android:id="@+id/itemCreate"
         android:name="com.petworld.view.CreateFragment"
-        android:label="fragment_create"
-        tools:layout="@layout/fragment_create" />
+        android:label="Create"
+        tools:layout="@layout/fragment_create">
+        <action
+            android:id="@+id/action_createFragment_to_createDetailFragment"
+            app:destination="@id/createDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createDetailFragment"
         android:name="com.petworld.view.CreateDetailFragment"
         android:label="fragment_create_detail"
-        tools:layout="@layout/fragment_create_detail" />
+        tools:layout="@layout/fragment_create_detail" >
+        <action
+            android:id="@+id/action_createDetailFragment_to_itemHome"
+            app:destination="@id/itemHome" />
+    </fragment>
 </navigation>

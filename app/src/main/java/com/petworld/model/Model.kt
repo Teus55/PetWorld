@@ -23,13 +23,15 @@ data class PetWorld(
 data class DetailPetWorld(
     @ColumnInfo(name = "idPetworld")
     var idPetworld: String?,
-    @ColumnInfo(name = "idDetail")
-    var idDetail: String?,
     @ColumnInfo(name = "subTitle")
     var subtitle: String?,
     @ColumnInfo(name = "para")
     var para: String?
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var idDetail: Int = 0
+}
+
 @Entity
 data class User(
     @ColumnInfo(name = "first")

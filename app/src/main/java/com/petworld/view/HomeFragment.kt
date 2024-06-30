@@ -47,10 +47,10 @@ class HomeFragment : Fragment() {
     }
 
     fun observeViewModel() {
-        viewModel.petLD.observe(viewLifecycleOwner, Observer {
+        viewModel.petWorldLD.observe(viewLifecycleOwner, Observer {
             petListAdapter.updatePetList(it)
         })
-        viewModel.petLoadErrorLD.observe(viewLifecycleOwner, Observer {
+        viewModel.petWorldLoadErrorLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
                 binding.txtError?.visibility = View.VISIBLE
             } else {

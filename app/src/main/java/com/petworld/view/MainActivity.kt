@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         var sharedFile = "com.PetWorld"
         var shared: SharedPreferences = getSharedPreferences(sharedFile,
             Context.MODE_PRIVATE )
-        var user = shared.getString("user","")
-        if (user==""){
+        var user = shared.getInt("user_id",0)
+        if (user==0){
             val action = HomeFragmentDirections.actionItemHomeToSignInFragment()
             navController.navigate(action)
         }

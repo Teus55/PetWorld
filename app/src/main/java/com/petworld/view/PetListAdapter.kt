@@ -41,7 +41,7 @@ class PetListAdapter(val petList:ArrayList<PetWorld>):RecyclerView.Adapter<PetLi
 
     }
 
-        fun updatePetList(newPetList: ArrayList<PetWorld>) {
+        fun updatePetList(newPetList: List<PetWorld>) {
         petList.clear()
         petList.addAll(newPetList)
         notifyDataSetChanged()
