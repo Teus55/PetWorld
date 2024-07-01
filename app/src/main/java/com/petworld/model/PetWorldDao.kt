@@ -11,7 +11,7 @@ interface PetWorldDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPetWorld(vararg petWorld:PetWorld) : List<Long>
-    @Query("SELECT * FROM petWorld")
+    @Query("SELECT * FROM petWorld ORDER BY id desc")
     fun selectAllPetWorld(): List<PetWorld>
     @Query("SELECT * FROM petWorld WHERE id= :id")
     fun selectPetWorld(id:Int): PetWorld
